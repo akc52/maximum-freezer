@@ -36,7 +36,10 @@ class InventoryApp extends Component {
       // nextProducts.push(this.state.product)
       // this.setState({ products: nextProducts })
       await axios.post('/products', {
-        product: this.state.product
+        product: {
+          name: this.state.product,
+          category: this.state.category
+        }
       })
       this.refresh()
     } catch (e) {
@@ -63,6 +66,12 @@ class InventoryApp extends Component {
     })
   }
 
+  handleChangeCategory = e => {
+    this.setState({
+      category: e.target.value
+    })
+  }
+
   render() {
     return (
       <div>
@@ -70,6 +79,7 @@ class InventoryApp extends Component {
           handleChange={this.handleChange}
           addProduct={this.addProduct}
           product={this.state.product}
+          handleChangeCategory={this.handleChangeCategory}
         />
         <ShowProducts products={this.state.products} removeProduct={this.removeProduct} />
       </div>

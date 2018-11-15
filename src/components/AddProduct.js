@@ -1,10 +1,11 @@
 import React from 'react'
+import foodList from './constants';
 
 const AddProduct = props => {
-  const { handleChange, addProduct, product } = props
+  const { handleChange, handleChangeCategory, addProduct, product, pCategory } = props
   return (
     <div className='AddProduct'>
-      <select>
+      <select value={pCategory} onChange={handleChangeCategory}>
         <option value='meat'>Meat</option>
         <option value='fish'>Fish</option>
         <option value='veg-protein'>Veg Protein</option>

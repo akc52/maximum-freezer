@@ -9,13 +9,19 @@ const ShowProducts = props => {
       <table className='ShowProducts'>
         <thead>
           <tr>
+            <th>Category</th>
             <th>Product Name</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           {products.map((product, i) => (
-            <Product removeProduct={removeProduct} description={product} index={i} key={i} />
+            <Product
+              removeProduct={removeProduct}
+              description={product.name}
+              category={product.category}
+              index={i}
+              key={i}
+            />
           ))}
         </tbody>
       </table>
