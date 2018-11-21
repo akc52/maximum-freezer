@@ -2,7 +2,10 @@ import React from 'react'
 import Product from './Product'
 
 const ShowProducts = props => {
-  const { products, removeProduct } = props
+  const {
+    products,
+    removeProduct
+  } = props
   return (
     <>
       <h2>Products</h2>
@@ -10,17 +13,23 @@ const ShowProducts = props => {
         <thead>
           <tr>
             <th>Category</th>
+            <th>Brand</th>
             <th>Product Name</th>
+            <th>Pack Size</th>
+            <th>Weight</th>
             <th>Quantity</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product, i) => (
             <Product
-              removeProduct={removeProduct}
-              description={product.name}
               category={product.category}
+              brand={product.brand}
+              description={product.name}
+              packSize={product.packSize}
+              weight={product.weight}
               quantity={product.quantity}
+              removeProduct={removeProduct}
               index={i}
               key={i}
             />

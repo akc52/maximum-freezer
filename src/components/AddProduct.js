@@ -3,34 +3,69 @@ import foodList from './constants';
 
 const AddProduct = props => {
   const {
-    handleChange,
+    category,
+    brand,
+    product,
+    packSize,
+    weight,
+    quantity,
+    addProduct,
+    handleChangeProduct,
     handleChangeCategory,
     handleChangeQuantity,
-    addProduct,
-    productQuantity,
-    product,
-    pCategory
+    handleChangePackSize,
+    handleChangeBrand,
+    handleChangeWeight
   } = props
 
-  const listItems = foodList.map( (item) =>
-    <option value={item.value}>{item.name}</option>
+  const listItems = foodList.map( (item, i) =>
+    <option
+      value={item.value}
+      key={i}>
+        {item.name}
+    </option>
   );
   return (
     <div className='AddProduct'>
       <select
-        value={pCategory}
+        value={category}
         onChange={handleChangeCategory}>
         {listItems}
       </select>
 
-      <input
-        onChange={handleChange}
-        value={product} />
+      <label>Brand:
+        <input
+          value={brand}
+          onChange={handleChangeBrand} />
+      </label>
 
-      <input
-        type="number"
-        onChange={handleChangeQuantity}
-        value={productQuantity} />
+      <label>Product:
+        <input
+          value={product}
+          onChange={handleChangeProduct} />
+      </label>
+
+      <br/>
+
+      <label>Pack Size:
+        <input
+          value={packSize}
+          onChange={handleChangePackSize} />
+      </label>
+
+      <label>Weight:
+        <input
+          value={weight}
+          onChange={handleChangeWeight} />
+      </label>
+
+      <label>Quantity:
+        <input
+          value={quantity}
+          onChange={handleChangeQuantity} />
+      </label>
+
+      <br/>
 
       <button onClick={addProduct}>Add Product</button>
     </div>

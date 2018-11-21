@@ -6,7 +6,11 @@ import axios from 'axios'
 class InventoryApp extends Component {
   state = {
     product: '',
-    productQuantity: '',
+    brand: '',
+    // category: '',
+    packSize: '',
+    weight: '',
+    quantity: '',
     products: []
   }
 
@@ -15,7 +19,14 @@ class InventoryApp extends Component {
   }
 
   clearInput = () => {
-    this.setState({ product: '' })
+    this.setState({
+      product: '',
+      brand: '',
+      // category: '',
+      packSize: '',
+      weight: '',
+      quantity: ''
+    })
   }
 
   refresh = async () => {
@@ -40,7 +51,10 @@ class InventoryApp extends Component {
         product: {
           name: this.state.product,
           category: this.state.category,
-          quantity: this.state.productQuantity
+          quantity: this.state.quantity,
+          brand: this.state.brand,
+          weight: this.state.weight,
+          packSize: this.state.packSize
         }
       })
       this.refresh()
@@ -62,33 +76,60 @@ class InventoryApp extends Component {
     }
   }
 
-  handleChange = e => {
-    this.setState({
-      product: e.target.value
-    })
-  }
-
+  // TO DO refactor
   handleChangeCategory = e => {
     this.setState({
       category: e.target.value
     })
   }
 
-  handleChangeQuantity = e => {
+  handleChangeBrand = e => {
     this.setState({
-      productQuantity: e.target.value
+      brand: e.target.value
     })
   }
+
+  handleChangeProduct = e => {
+    this.setState({
+      product: e.target.value
+    })
+  }
+
+  handleChangePackSize = e => {
+    this.setState({
+      packSize: e.target.value
+    })
+  }
+
+  handleChangeWeight = e => {
+    this.setState({
+      weight: e.target.value
+    })
+  }
+
+  handleChangeQuantity = e => {
+    this.setState({
+      quantity: e.target.value
+    })
+  }
+
+  //
 
   render() {
     return (
       <div>
         <AddProduct
-          handleChange={this.handleChange}
-          addProduct={this.addProduct}
           product={this.state.product}
+          quantity={this.state.quantity}
+          brand={this.state.brand}
+          weight={this.state.weight}
+          packSize={this.state.packSize}
+          addProduct={this.addProduct}
           handleChangeCategory={this.handleChangeCategory}
-          productQuantity={this.state.productQuantity}
+          handleChangeBrand={this.handleChangeBrand}
+          handleChangeProduct={this.handleChangeProduct}
+          handleChangePackSize={this.handleChangePackSize}
+          handleChangeWeight={this.handleChangeWeight}
           handleChangeQuantity={this.handleChangeQuantity}
         />
         <ShowProducts

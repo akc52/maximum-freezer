@@ -3,11 +3,14 @@ import PropTypes from 'prop-types'
 
 const Product = props => {
   const {
-    description,
     category,
+    brand,
+    description,
+    packSize,
+    weight,
+    quantity,
     index,
-    removeProduct,
-    quantity
+    removeProduct
   } = props
 
   return (
@@ -16,7 +19,16 @@ const Product = props => {
         {category}
       </td>
       <td>
+        {brand}
+      </td>
+      <td>
         {description}
+      </td>
+      <td>
+        {packSize}
+      </td>
+      <td>
+        {weight}
       </td>
       <td>
         {quantity}
@@ -31,7 +43,7 @@ const Product = props => {
 Product.propTypes = {
   description: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.string.isRequired // number
 }
 
 export default Product
