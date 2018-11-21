@@ -20,11 +20,12 @@ const AddProduct = props => {
 
   const listItems = foodList.map( (item, i) =>
     <option
-      value={item.value}
+      value={item.name}
       key={i}>
         {item.name}
     </option>
   );
+
   return (
     <div className='AddProduct'>
       <select

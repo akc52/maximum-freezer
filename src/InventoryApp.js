@@ -76,7 +76,9 @@ class InventoryApp extends Component {
     }
   }
 
-  // TO DO refactor
+  // TO DO refactor handles
+
+  // TO DO set initial value
   handleChangeCategory = e => {
     this.setState({
       category: e.target.value
