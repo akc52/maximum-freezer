@@ -36,8 +36,7 @@ class InventoryApp extends Component {
       // get /products to get all products
       const response = await axios.get('/products')
       const products = response.data.data
-      console.log(products)
-      // put in state
+      // TEMP put in state
       this.setState({ products })
     } catch(e) {
       console.log(e)
@@ -82,7 +81,7 @@ class InventoryApp extends Component {
 
   // TO DO refactor handles
 
-  // TO DO set initial value
+  // TO DO set initial value for category
   handleChangeCategory = e => {
     this.setState({
       category: e.target.value
@@ -121,7 +120,7 @@ class InventoryApp extends Component {
   //
 
   render() {
-    const hasInventory = this.state.products.length > 1;
+    const hasInventory = this.state.products.length > 0;
 
     return (
       <div>

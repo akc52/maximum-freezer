@@ -42,7 +42,6 @@ const Product = props => {
           variant="contained"
           color="secondary"
           onClick={() => removeProduct(index)}>
-          Delete
         <DeleteIcon />
       </Button>
       </TableCell>
