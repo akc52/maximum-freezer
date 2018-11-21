@@ -11,6 +11,7 @@ const ShowProducts = props => {
           <tr>
             <th>Category</th>
             <th>Product Name</th>
+            <th>Quantity</th>
           </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@ const ShowProducts = props => {
               removeProduct={removeProduct}
               description={product.name}
               category={product.category}
+              quantity={product.quantity}
               index={i}
               key={i}
             />

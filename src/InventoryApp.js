@@ -6,6 +6,7 @@ import axios from 'axios'
 class InventoryApp extends Component {
   state = {
     product: '',
+    productQuantity: '',
     products: []
   }
 
@@ -38,7 +39,8 @@ class InventoryApp extends Component {
       await axios.post('/products', {
         product: {
           name: this.state.product,
-          category: this.state.category
+          category: this.state.category,
+          quantity: this.state.productQuantity
         }
       })
       this.refresh()
@@ -72,6 +74,12 @@ class InventoryApp extends Component {
     })
   }
 
+  handleChangeQuantity = e => {
+    this.setState({
+      productQuantity: e.target.value
+    })
+  }
+
   render() {
     return (
       <div>
@@ -80,8 +88,13 @@ class InventoryApp extends Component {
           addProduct={this.addProduct}
           product={this.state.product}
           handleChangeCategory={this.handleChangeCategory}
+          productQuantity={this.state.productQuantity}
+          handleChangeQuantity={this.handleChangeQuantity}
         />
-        <ShowProducts products={this.state.products} removeProduct={this.removeProduct} />
+        <ShowProducts
+          products={this.state.products}
+          removeProduct={this.removeProduct}
+        />
       </div>
     )
   }
