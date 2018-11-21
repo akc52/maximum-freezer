@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ShowProducts from './components/ShowProducts'
 import AddProduct from './components/AddProduct'
 import axios from 'axios'
+import Divider from '@material-ui/core/Divider'
+import EmptyProducts from './components/EmptyProducts';
 
 class InventoryApp extends Component {
   state = {
@@ -70,6 +72,8 @@ class InventoryApp extends Component {
     // this.setState({ products: nextProducts })
     try {
       await axios.delete(`/products/${index}`)
+      console.log(this.state.products.length > 1)
+      console.log(this.state.products.length )
       this.refresh()
     } catch(e) {
       console.log(e)
@@ -114,10 +118,11 @@ class InventoryApp extends Component {
       quantity: e.target.value
     })
   }
-
   //
 
   render() {
+    const hasInventory = this.state.products.length > 1;
+
     return (
       <div>
         <AddProduct
@@ -134,10 +139,15 @@ class InventoryApp extends Component {
           handleChangeWeight={this.handleChangeWeight}
           handleChangeQuantity={this.handleChangeQuantity}
         />
-        <ShowProducts
+        <Divider />
+        {hasInventory ? (
+          <ShowProducts
           products={this.state.products}
           removeProduct={this.removeProduct}
         />
+        ) : (
+          <EmptyProducts />
+        )}
       </div>
     )
   }
