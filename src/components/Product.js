@@ -1,5 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from '@material-ui/core/Button'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 const Product = props => {
   const {
@@ -14,29 +18,35 @@ const Product = props => {
   } = props
 
   return (
-    <tr key={description}>
-      <td>
+    <TableRow key={description}>
+      <TableCell>
         {category}
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         {brand}
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         {description}
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         {packSize}
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         {weight}
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         {quantity}
-      </td>
-      <td>
-        <button onClick={() => removeProduct(index)}>Remove Product</button>
-      </td>
-    </tr>
+      </TableCell>
+      <TableCell>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => removeProduct(index)}>
+          Delete
+        <DeleteIcon />
+      </Button>
+      </TableCell>
+    </TableRow>
   )
 }
 

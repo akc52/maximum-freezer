@@ -15,7 +15,7 @@ class InventoryApp extends Component {
   }
 
   componentDidMount() {
-    this.refresh();
+    this.refresh()
   }
 
   clearInput = () => {
