@@ -3,6 +3,7 @@ import axios from "axios"
 import { getToken } from "../services/tokenService"
 import Logout from './Logout'
 import ShowProducts from './ShowProducts'
+import EmptyProducts from './EmptyProducts'
 import AddProduct from "./AddProduct"
 
 import Typography from '@material-ui/core/Typography'
@@ -110,9 +111,7 @@ class Dashboard extends React.Component {
             />
           </ul>
         ) : (
-          <div>
-            Nada
-          </div>
+          <EmptyProducts />
         )}
         <Logout setUser={this.props.setUser} />
       </div>
