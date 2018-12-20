@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import InventoryApp from './InventoryApp'
+import App from './App'
 
-ReactDOM.render(<InventoryApp />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

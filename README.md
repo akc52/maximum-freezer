@@ -1,44 +1,99 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-express-boilerplate
 
-## Available Scripts
+This is an example of how to construct a simple react and express boilerplate. There are advantages and disadvantages to this particular approach which we'll discuss in class, but this is the quickest way to get started and organized on a small React/Express project.
 
-In the project directory, you can run:
+If you plan to expand to larger projects, I would recommend splitting your application into two separate repositories: one for your express server, and one for your react app.
 
-### `npm start`
+1. `create-react-app react-express-boilerplate && cd react-express-boilerplate`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. `mkdir lib`
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+3. `npm install express --save`
 
-### `npm test`
+4. `cd lib && touch server.js`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. Inside `server.js:`
 
-### `npm run build`
+```javascript
+const express = require("express");
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const app = express();
+const PORT = 8080;
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+app.get("/hello", (req, res) => {
+  res.status(200).json({
+    message: "hello world"
+  });
+});
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
+});
+```
 
-### `npm run eject`
+6. `npm install concurrently --save-dev`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+7. `npm install nodemon -g`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+8. In `package.json`:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```json
+{
+  "name": "react-express-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
+  "proxy": "http://localhost:8080/",
+  "scripts": {
+    "client": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "server": "nodemon lib/server.js",
+    "start":
+      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+9. `npm install axios --save`
 
-## Learn More
+10. In `/src/App.js`:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import axios from "axios";
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+class App extends Component {
+  componentDidMount() {
+    axios.get("/hello").then(res => {
+      console.log(res.data);
+    });
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+    );
+  }
+}
+
+export default App;
+```

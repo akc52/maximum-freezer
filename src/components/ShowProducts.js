@@ -14,7 +14,7 @@ const ShowProducts = props => {
     removeProduct
   } = props
   return (
-    <>
+    <div>
       <Paper>
         <Typography component="h2" variant="h2" gutterBottom>
           Inventory List
@@ -48,7 +48,7 @@ const ShowProducts = props => {
           </TableBody>
         </Table>
       </Paper>
-    </>
+    </div>
   )
 }
 
