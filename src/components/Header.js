@@ -1,4 +1,5 @@
 import React from "react"
+import Logout from './Logout'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -17,12 +18,13 @@ class Header extends React.Component {
       <div>
         <AppBar position="static" color="default">
           <Toolbar>
-            <Typography variant="h6" color="inherit">
-              Header!
+            <Typography component="h1" variant="h1" gutterBottom>
+            { this.props.company } Freezer Inventory
               { 
                 // TO DO move login/logout
               }
             </Typography>
+            <Logout setUser={this.props.setUser} />
           </Toolbar>
         </AppBar>
       </div>

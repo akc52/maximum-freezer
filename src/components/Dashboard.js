@@ -8,6 +8,7 @@ import AddProduct from "./AddProduct"
 
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
+import Paper from '@material-ui/core/Paper'
 
 
 class Dashboard extends React.Component {
@@ -86,34 +87,35 @@ class Dashboard extends React.Component {
         <Typography component="h2" variant="h2" gutterBottom>
           Dashboard
         </Typography>
-        <form onSubmit={this.handleSubmit}>
-          <input name="product" type="text" onChange={this.handleChange} />
-          {/*
-            <AddProduct 
-              addProduct={this.handleSubmit}
-            />
-          */}
-          <button>Add Product</button>
-        </form>
+        <Paper>
+          <form onSubmit={this.handleSubmit}>
+            <input name="product" type="text" onChange={this.handleChange} />
+            {/*
+              <AddProduct 
+                addProduct={this.handleSubmit}
+              />
+            */}
+            <button>Add Product</button>
+          </form>
+        </Paper>
 
         <Divider />
 
         {hasInventory ? (
-          <ul>
-            {/*
+          /*
+            <ul>
               {this.state.products.map(product => {
                 return <li>{JSON.stringify(product, null, 3)}</li>
               })}
-            */}
-            <ShowProducts 
-              products={this.state.products}
-              removeProduct={this.removeProduct}
-            />
-          </ul>
+            </ul>
+          */
+          <ShowProducts 
+            products={this.state.products}
+            removeProduct={this.removeProduct}
+          />
         ) : (
           <EmptyProducts />
         )}
-        <Logout setUser={this.props.setUser} />
       </div>
     )
   }

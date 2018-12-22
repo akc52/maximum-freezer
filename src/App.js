@@ -56,10 +56,10 @@ class App extends Component {
     // 4. If a logged in user tries to hit the login screen, redirect them to the dashboard.
     return (
       <div className="App">
-        <Header />
-        <Typography component="h1" variant="h1" gutterBottom>
-        { this.state.company } Freezer Inventory
-        </Typography>
+        <Header 
+          company={this.state.company}
+          setUser={this.setUser}
+        />
         <Router>
           <div>
             <Route
